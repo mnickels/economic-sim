@@ -15,7 +15,7 @@ public class MainMenu {
 	
 	@FXML
 	public void handleNewGame() {
-		
+		Game.setScene("PlayerScene");
 	}
 	
 	@FXML

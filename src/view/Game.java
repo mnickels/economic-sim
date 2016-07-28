@@ -23,14 +23,14 @@ public final class Game extends Application {
 		GAME = this;
 		this.primaryStage = primaryStage;
 		primaryStage.setTitle(GAME_TITLE);
-		changeScene("MainMenu");
+		setScene("MainMenu");
 	}
 	
 	/**
 	 * Changes the currently displayed scene to the scene indicated by the fxml file name sceneName.
 	 * @param sceneName the name of the .fxml file to load as the current screen (exclude the .fxml file extension)
 	 */
-	public static void changeScene(String sceneName) {
+	public static void setScene(String sceneName) {
 		GAME.primaryStage.hide();
 		Scene scene = null;
 		try {
