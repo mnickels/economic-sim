@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  * Manages the switching between JavaFX scenes.
  * 
  * @author Mike Nickels | mnickels@uw.edu
- * TODO Josh, add an author tag here, and anywhere else you helped me write code today
+ * @author Joshua Neighbarger | jneigh@uw.edu
  */
 public final class Game extends Application {
 	
