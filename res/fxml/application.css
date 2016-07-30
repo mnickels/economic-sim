@@ -1,0 +1,22 @@
+.launcher {
+	-fx-background-position: center;
+	-fx-background-image: url("../images/LauncherBackground.jpg");
+	-fx-background-repeat: stretch;
+}
+
+.launcher-text {
+	-fx-fill: #EEEEEE;
+	-fx-font-size: 20px;
+	-fx-font-weight: bold;
+	-fx-cursor: hand;
+	-fx-effect: dropshadow(gaussian, #000000, 2, .5, 0, 0);
+}
+
+.launcher-text:hover {
+	-fx-effect: dropshadow(gaussian, #000000, 15, .5, 0, 0);
+}
+
+#logo {
+	-fx-fill: #EEEEEE;
+	-fx-font-size: 16px;
+}

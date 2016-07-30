@@ -1,7 +1,7 @@
 package view;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -36,6 +36,14 @@ public final class Launcher extends Application {
 	}
 	
 	/**
+	 * Opens the defined web page in the user's default browser.
+	 */
+	@FXML
+	private void handleSupport() {
+		getHostServices().showDocument("https://www.theUWhackers.com");
+	}
+	
+	/**
 	 * Exits the entire Application.
 	 */
 	@FXML
@@ -45,16 +53,14 @@ public final class Launcher extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		primaryStage.initStyle(StageStyle.UNDECORATED);
 		try {
-			final FileInputStream fxml = new FileInputStream(FXML_PATH + "Launcher.fxml");
-			primaryStage.setScene(new Scene(new FXMLLoader().load(fxml)));
-			fxml.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			final Scene scene = new Scene(new FXMLLoader().load(new FileInputStream(FXML_PATH + "Launcher.fxml")));
+			scene.getStylesheets().add((new File(FXML_PATH + "application.css")).toURI().toURL().toExternalForm());
+			primaryStage.setScene(scene);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 	}
 	
