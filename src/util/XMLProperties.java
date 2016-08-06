@@ -114,4 +114,18 @@ public class XMLProperties extends Properties {
 		return new BigInteger(getProperty(key));
 	}
 	
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public int[] getIntArray(final String key) {
+		final String[] strs = getProperty(key).replaceAll("\\s", "").split(",");
+		final int[] ints = new int[strs.length];
+		for (int i = 0; i < strs.length; i++) {
+			ints[i] = Integer.parseInt(strs[i]);
+		}
+		return ints;
+	}
+	
 }

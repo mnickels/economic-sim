@@ -45,7 +45,7 @@ public final class Launcher extends Application {
 	 */
 	@FXML
 	private void handleOptions() {
-		Platform.runLater( () -> new Game().start(new Stage()) );
+		Platform.runLater( () -> new Options().start(new Stage()) );
 	}
 	
 	/**

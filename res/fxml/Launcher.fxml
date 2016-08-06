@@ -19,7 +19,7 @@
   </rowConstraints>
    <children>
       <Text onMouseClicked="#handleLaunchGame" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="launcher-text" text="Launch Game" textAlignment="RIGHT" GridPane.columnIndex="1" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="launcher-text" text="Options" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Text onMouseClicked="#handleOptions" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="launcher-text" text="Options" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Text onMouseClicked="#handleSupport" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="launcher-text" text="Support" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Text onMouseClicked="#handleExit" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="launcher-text" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Text id="logo" strokeType="OUTSIDE" strokeWidth="0.0" text="theUWhackers™" GridPane.rowIndex="3" />
