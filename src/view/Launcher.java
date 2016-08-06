@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import util.PropertiesManager;
 
 /**
  * The launcher for the program.
@@ -22,9 +23,13 @@ import javafx.stage.StageStyle;
 public final class Launcher extends Application {
 
 	/** The path to the folder in this project directory that contains all FXML scene files. */
-	private static final String FXML_PATH = "./res/fxml/";
+	private static String FXML_PATH;
 	/** The top-most component in the Launcher. Used to give the scene to each of the controller methods. */
 	@FXML private GridPane root;
+	
+	static {
+		FXML_PATH = PropertiesManager.getXML("./config/application.xml").getProperty("fxml-path");
+	}
 	
 	/**
 	 * Launches the Game UI.
@@ -33,6 +38,14 @@ public final class Launcher extends Application {
 	private void handleLaunchGame() {
 		Platform.runLater( () -> new Game().start(new Stage()) );
 		((Stage) root.getScene().getWindow()).close();
+	}
+	
+	/**
+	 * 
+	 */
+	@FXML
+	private void handleOptions() {
+		Platform.runLater( () -> new Game().start(new Stage()) );
 	}
 	
 	/**

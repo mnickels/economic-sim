@@ -1,5 +1,6 @@
 package view;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -7,6 +8,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import util.PropertiesManager;
+import util.XMLProperties;
 
 /**
  * Main controller for the application.
@@ -18,27 +21,27 @@ import javafx.stage.Stage;
 public final class Game extends Application {
 	
 	/** The path to the folder in this project directory that contains all FXML scene files. */
-	private static final String FXML_PATH = "./res/fxml/";
+	private static String FXML_PATH;
 	/** The extension used for FXML files. */
-	private static final String FXML_EXT = ".fxml";
+	private static String FXML_EXT;
 	/** The title to show in the main application window. */
-	private static final String GAME_TITLE = "Economic Simulator";
-	
+	private static String GAME_TITLE;
 	/** Instance of the current Game object being used in the application. */
 	private static Game GAME;
 	
 	/** The primary Stage for the application UI. */
 	private Stage primaryStage;
 	
-	/**
-	 * Constructor for the Game class. Should only be called via {@link #launch(Class, String...)}.
-	 */
-	public Game() {
-		GAME = this;
+	static {
+		final XMLProperties prop = PropertiesManager.getXML("./config/application.xml");
+		FXML_PATH = prop.getString("fxml-path");
+		FXML_EXT = prop.getString("fxml-ext");
+		GAME_TITLE = prop.getString("game-title");
 	}
 
 	@Override
 	public void start(Stage primaryStage) {
+		GAME = this;
 		this.primaryStage = primaryStage;
 		primaryStage.setTitle(GAME_TITLE);
 		setScene("MainMenu");
@@ -52,7 +55,8 @@ public final class Game extends Application {
 		GAME.primaryStage.hide();
 		Scene scene = null;
 		try {
-			scene = new Scene((new FXMLLoader()).load(new FileInputStream(FXML_PATH + sceneName + FXML_EXT)));
+			scene = new Scene(new FXMLLoader().load(new FileInputStream(FXML_PATH + sceneName + FXML_EXT)));
+			scene.getStylesheets().add((new File(FXML_PATH + "application.css")).toURI().toURL().toExternalForm());
 		} catch (IOException e) {
 			System.err.println("Error loading scene: " + sceneName);
 			e.printStackTrace();

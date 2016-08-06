@@ -1,3 +1,19 @@
+.main-menu {
+	-fx-background-color: #666666
+}
+
+.main-menu-text {
+	-fx-fill: #EEEEEE;
+	-fx-font-size: 20px;
+	-fx-font-weight: bold;
+	-fx-effect: dropshadow(gaussian, #000000, 2, .5, 0, 0);
+}
+
+.main-menu-text:hover {
+	-fx-cursor: hand;
+	-fx-effect: dropshadow(gaussian, #000000, 15, .5, 0, 0);
+}
+
 .launcher {
 	-fx-background-position: center;
 	-fx-background-image: url("../images/LauncherBackground.jpg");
@@ -8,15 +24,20 @@
 	-fx-fill: #EEEEEE;
 	-fx-font-size: 20px;
 	-fx-font-weight: bold;
-	-fx-cursor: hand;
 	-fx-effect: dropshadow(gaussian, #000000, 2, .5, 0, 0);
 }
 
 .launcher-text:hover {
+	-fx-cursor: hand;
 	-fx-effect: dropshadow(gaussian, #000000, 15, .5, 0, 0);
+}
+
+#version-text {
+	-fx-fill: #EEEEEE;
+	-fx-font-size: 14px;
 }
 
 #logo {
 	-fx-fill: #EEEEEE;
-	-fx-font-size: 16px;
+	-fx-font-size: 18px;
 }
