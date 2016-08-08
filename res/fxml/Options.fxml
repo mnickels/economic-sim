@@ -29,7 +29,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ComboBox layoutX="276.0" layoutY="24.0" prefWidth="150.0" translateX="10.0" />
+                        <ComboBox fx:id="resolutionComboBox" layoutX="276.0" layoutY="24.0" prefWidth="150.0" translateX="10.0" />
                         <Text boundsType="LOGICAL_VERTICAL_CENTER" layoutX="209.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resolution" translateX="-10.0" />
                      </children>
                   </AnchorPane>
