@@ -3,7 +3,7 @@ package view.scenes;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import view.Game;
+import view.StageController;
 
 /**
  * The Controller for the Main Menu scene.
@@ -20,7 +20,7 @@ public class MainMenu {
 	 */
 	@FXML
 	public void handleNewGame() {
-		Game.setScene("PlayerScene");
+		StageController.setScene("PlayerScene");
 	}
 	
 	/**
