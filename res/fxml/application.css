@@ -1,5 +1,11 @@
+.minimap {
+	-fx-border-color: #000000;
+	-fx-border-width: 1;
+	-fx-border-radius: 5;
+}
+
 .main-menu {
-	-fx-background-color: #666666
+	-fx-background-color: #666666;
 }
 
 .main-menu-text {

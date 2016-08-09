@@ -28,7 +28,7 @@ public final class Launcher extends Application {
 	@FXML private GridPane root;
 	
 	static {
-		FXML_PATH = PropertiesManager.getXML("./config/application.xml").getProperty("fxml-path");
+		FXML_PATH = PropertiesManager.getXML("./config/application.xml").getString("fxml-path");
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public final class Launcher extends Application {
 	 */
 	@FXML
 	private void handleLaunchGame() {
-		Platform.runLater( () -> new Game().start(new Stage()) );
+		Platform.runLater( () -> new StageController().start(new Stage()) );
 		((Stage) root.getScene().getWindow()).close();
 	}
 	
