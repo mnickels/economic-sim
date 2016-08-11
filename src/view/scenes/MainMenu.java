@@ -8,6 +8,7 @@ import view.StageController;
 /**
  * The Controller for the Main Menu scene.
  * 
+ * @author Joshua Neighbarger | jneigh@uw.edu
  * @author Mike Nickels | mnickels@uw.edu
  */
 public class MainMenu {
@@ -21,6 +22,11 @@ public class MainMenu {
 	@FXML
 	public void handleNewGame() {
 		StageController.setScene("PlayerScene");
+	}
+	
+	@FXML
+	public void handleLoadMenu() {
+		StageController.setScene("LoadMenu");
 	}
 	
 	/**
