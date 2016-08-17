@@ -6,7 +6,9 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import util.PropertiesManager;
 import util.XMLProperties;
@@ -52,7 +54,6 @@ public final class StageController extends Application {
 	 * @param sceneName the name of the .fxml file to load as the current screen (exclude the .fxml file extension)
 	 */
 	public static void setScene(String sceneName) {
-		GAME.primaryStage.hide();
 		Scene scene = null;
 		try {
 			scene = new Scene(new FXMLLoader().load(new FileInputStream(FXML_PATH + sceneName + FXML_EXT)));
@@ -66,6 +67,9 @@ public final class StageController extends Application {
 			GAME.primaryStage.centerOnScreen();
 		}
 		GAME.primaryStage.show();
+		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        GAME.primaryStage.setX((primScreenBounds.getWidth() - GAME.primaryStage.getWidth()) / 2);
+        GAME.primaryStage.setY((primScreenBounds.getHeight() - GAME.primaryStage.getHeight()) / 2);
 	}
 
 }
