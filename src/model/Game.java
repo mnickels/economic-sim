@@ -8,7 +8,7 @@ package model;
 public class Game {
 
 	/**
-	 * Creates a new Game model. :)
+	 * Creates a new Game model.
 	 */
 	public Game() {
 		// TODO Auto-generated constructor stub
