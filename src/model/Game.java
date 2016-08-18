@@ -6,11 +6,15 @@ package model;
  * @author Mike Nickels | mnickels@uw.edu
  */
 public class Game {
+	
+	private static final Game instance = new Game();
+	
+	private Player[] players;
 
 	/**
 	 * Creates a new Game model.
 	 */
-	public Game() {
+	private Game() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -20,6 +24,10 @@ public class Game {
 	 */
 	public void turn() {
 		// TODO call all other "turn()" methods that need to be called in a single simulation tick
+	}
+	
+	public static Game getInstance() {
+		return instance;
 	}
 
 }
