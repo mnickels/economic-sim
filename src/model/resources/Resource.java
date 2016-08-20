@@ -7,6 +7,8 @@ package model.resources;
  */
 public enum Resource {
 	
+	// NOTE: if you need the index of a Resource in this enum's values() array, call the ordinal function on the Resource constant.
+	
 	MONEY,
 	FOOD,
 	WOOD,

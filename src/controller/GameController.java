@@ -10,8 +10,6 @@ import model.Game;
  */
 public class GameController implements Runnable {
 	
-	private final Game game;
-	
 	private boolean running;
 	private int targetUDS = 10;
 
@@ -19,14 +17,14 @@ public class GameController implements Runnable {
 	 * Create a new GameController.
 	 */
 	public GameController() {
-		game = new Game();
+		
 	}
 	
 	/**
 	 * Executes a single turn, or "tick," of the simulation.
 	 */
 	public void turn() {
-		game.turn();
+		Game.getInstance().turn();
 	}
 
 	@Override
