@@ -1,3 +1,11 @@
+/*
+ * Based on example code by Stefan Gustavson (stegu@itn.liu.se).
+ * Optimisations by Peter Eastman (peastman@drizzle.stanford.edu).
+ * Octavization by "longshorts" on the following forum:
+ * http://www.java-gaming.org/index.php?topic=31637.0
+ * Randomization and 2D-ification by Mike Nickels (mnickels@uw.edu).
+ */
+
 package model.map;
 
 import java.util.ArrayList;
@@ -5,6 +13,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Simplex Noise generator.
+ *
+ * @author Mike Nickels | mnickels@uw.edu
+ */
 public class SimplexNoise {
 
 	private static Grad grad3[] = {new Grad(1,1,0),new Grad(-1,1,0),new Grad(1,-1,0),new Grad(-1,-1,0),
@@ -12,20 +25,30 @@ public class SimplexNoise {
 			new Grad(0,1,1),new Grad(0,-1,1),new Grad(0,1,-1),new Grad(0,-1,-1)};
 
 	private short p[] = new short[256];
-	// To remove the need for index wrapping, double the permutation table length
 	private short perm[] = new short[512];
 	private short permMod12[] = new short[512];
 
-	// Skewing and unskewing factors for 2, 3, and 4 dimensions
+	// Skewing and unskewing factors
 	private static final double F2 = 0.5*(Math.sqrt(3.0)-1.0);
 	private static final double G2 = (3.0-Math.sqrt(3.0))/6.0;
 	
 	final long seed;
 	
+	/**
+	 * Creates a random SimplexNoise object.
+	 * 
+	 * @author Mike Nickels | mnickels@uw.edu
+	 */
 	public SimplexNoise() {
 		this(System.nanoTime());
 	}
 	
+	/**
+	 * Pseudo-random Simplex Noise controlled by a seed.
+	 * @param seed the seed for the Random object used.
+	 * 
+	 * @author Mike Nickels | mnickels@uw.edu
+	 */
 	public SimplexNoise(long seed) {
 		this.seed = seed;
 		
@@ -44,6 +67,12 @@ public class SimplexNoise {
 		}
 	}
 
+	/**
+	 * Gets the currently-in-use seed value.
+	 * @return The seed used by this SimplexNoise object to generate random noise.
+	 * 
+	 * @author Mike Nickels | mnickels@uw.edu
+	 */
 	public long getCurrentSeed() {
 		return seed;
 	}
@@ -52,6 +81,8 @@ public class SimplexNoise {
 	 * Takes Simplex Noise and returns the same noise scaled to values between -1 and 1.
 	 * @param noise the noise to normalize.
 	 * @return The same noise scaled to have a minimum value of -1 and a maximum value of 1.
+	 * 
+	 * @author Mike Nickels | mnickels@uw.edu
 	 */
 	private float[][] normalize(float[][] noise) {
 		float min = 0;
@@ -82,12 +113,14 @@ public class SimplexNoise {
 	 * Generates octaved simplex noise. All values will be between -1 and 1.
 	 * @param width the width of the noise.
 	 * @param height the height of the noise.
-	 * @param octaves the number of iterations to run. Higher number of octaves means less smoothness in noise.
+	 * @param octaves the number of iterations to run. Higher number of octaves means more branching in noise.
 	 * 		  Noticeable difference up to about 7 octaves, after that the effect is minimal.
 	 * @param roughness the roughness of the noise. Higher values lead to noisier noise.
 	 * @param frequency the steepness of the noise. Higher values lead to steeper slopes in the noise.
 	 * 		  Higher values produce more numerous but thinner peaks and valleys.
-	 * @return Simplex noise.
+	 * @return A 2D array of float values between -1 and 1 containing Simplex Noise.
+	 * 
+	 * @author Mike Nickels | mnickels@uw.edu
 	 */
 	public float[][] generateOctavedSimplexNoise(int width, int height, int octaves, float roughness, float frequency){
 		float[][] totalNoise = new float[height][width];

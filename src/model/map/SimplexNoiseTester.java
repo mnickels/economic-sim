@@ -24,6 +24,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import util.PropertiesManager;
 
+/**
+ * Test GUI for the SimplexNoise generator class.
+ *
+ * @author Mike Nickels | mnickels@uw.edu
+ */
 public class SimplexNoiseTester extends Application {
 	
 	/** The path to the folder in this project directory that contains all FXML scene files. */
@@ -33,9 +38,13 @@ public class SimplexNoiseTester extends Application {
 		FXML_PATH = PropertiesManager.getXML("./config/application.xml").getString("fxml-path");
 	}
 	
+	/** The SimplexNoise generator. */
 	private SimplexNoise sng;
+	/** Currently generated 2D array of simplex noise. */
 	private float[][] noise;
+	/** Currently displayed scale size. */
 	private int currentScale;
+	/** Reference to the Stage for resizing purposes. */
 	private static Stage primaryStage;
 	
 	@FXML
@@ -68,6 +77,9 @@ public class SimplexNoiseTester extends Application {
 	@FXML
 	public Slider frequency;
 	
+	/**
+	 * Initializes this FX controller.
+	 */
 	@FXML
 	public void initialize() {
 		octavesLabel.textProperty().bind(Bindings.format("Ocvtaves: %.0f", octaves.valueProperty()));
@@ -84,6 +96,9 @@ public class SimplexNoiseTester extends Application {
         });
 	}
 	
+	/**
+	 * Generates a new map from simplex noise and displays it.
+	 */
 	@FXML
 	public void generateMap() {
 		if (randomize.isSelected()) {
@@ -110,6 +125,12 @@ public class SimplexNoiseTester extends Application {
 		primaryStage.sizeToScene();
 	}
 
+	/**
+	 * Interpret some noise as a heightmap.
+	 * @param noise the simplex noise to interpret.
+	 * @param scale the scaling to use on the image.
+	 * @return An Image with the noise drawn onto it.
+	 */
 	public Image drawNoise(float[][] noise, int scale) {
 		currentScale = scale;
 		WritableImage img = new WritableImage(noise[0].length * scale, noise.length * scale);
@@ -126,6 +147,11 @@ public class SimplexNoiseTester extends Application {
 		return img;
 	}
 	
+	/**
+	 * Determines the color to assign to a value of noise.
+	 * @param f the noise value to interpret.
+	 * @return A Color representing this value's height.
+	 */
 	private Color pickColor(float f) {
 		if (f < -1) return Color.RED;
 		if (f < -0.6) return Color.DARKBLUE;
@@ -157,6 +183,10 @@ public class SimplexNoiseTester extends Application {
         stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
 	}
 	
+	/**
+	 * Launch point for the tester Application.
+	 * @param args command line arguments (unused in this implementation).
+	 */
 	public static void main(String[] args){
 		launch(args);
 	}
