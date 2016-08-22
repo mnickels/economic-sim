@@ -63,5 +63,20 @@ public abstract class Area {
 	public void build(Improvement i) {
 		improvements.add(i);
 	}
+	
+	/**
+	 * Gets the cost of this Area.
+	 * @return The cost for a Player to purchase this Area.
+	 */
+	public int getCost() {
+		/*
+		 * TODO: getCost() method
+		 * either:
+		 * 1.	base it on the resources in the Area at start
+		 * 2.	make it a multiple of the turn yield
+		 * 3.	if this should be a flat rate based on land area, pass the cost in to the constructor.
+		 */
+		return 0;
+	}
 
 }
