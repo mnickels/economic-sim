@@ -32,30 +32,24 @@ public abstract class AbstractPlayer implements Player {
 		ownedLand.add(a);
 	}
 	
-	/**
-	 * Get the amount of a Resource that there is.
-	 * @param r the Resource to check the quantity of.
-	 * @return The number of the specified Resource that this Player has.
-	 */
+	@Override
+	public boolean canAfford(int[] cost) {
+		for (int i = 0; i < cost.length; i++)
+			if (resources[i] < cost[i]) return false;
+		return true;
+	}
+	
+	@Override
 	public int resourceCount(Resource r) {
 		return resources[r.ordinal()];
 	}
 	
-	/**
-	 * Gather a certain amount of a Resource.
-	 * @param m the Resource to collect.
-	 * @param amt the amount of the Resource being collected.
-	 */
+	@Override
 	public void collectResource(Resource r, int amt) {
 		resources[r.ordinal()] += amt;
 	}
 	
-	/**
-	 * Consume an amount of a Material that the Player owns, if enough are available.
-	 * @param r the Material to spend.
-	 * @param amt the number of the Material that is being used up.
-	 * @return False if there are not enough of that type of resources to spend; true otherwise.
-	 */
+	@Override
 	public boolean spendMaterial(Resource r, int amt) {
 		if (resourceCount(r) < amt) return false;
 		resources[r.ordinal()] -= amt;

@@ -1,6 +1,7 @@
 package model;
 
 import model.map.areas.Area;
+import model.resources.Resource;
 
 /**
  * The abstract model for a player of the simulation game.
@@ -26,5 +27,27 @@ public interface Player {
 	 * @return True if the Player can afford the specified costs, false if they are unable to pay for all of the costs.
 	 */
 	public boolean canAfford(int[] cost);
+	
+	/**
+	 * Get the amount of a Resource that there is.
+	 * @param r the Resource to check the quantity of.
+	 * @return The number of the specified Resource that this Player has.
+	 */
+	public int resourceCount(Resource r);
+	
+	/**
+	 * Gather a certain amount of a Resource.
+	 * @param r the Resource to collect.
+	 * @param amt the amount of the Resource being collected.
+	 */
+	public void collectResource(Resource r, int amt);
+	
+	/**
+	 * Consume an amount of a Resource that the Player owns, if enough are available.
+	 * @param r the Resource to spend.
+	 * @param amt the number of the Resource that is being used up.
+	 * @return False if there are not enough of that type of resources to spend; true otherwise.
+	 */
+	public boolean spendMaterial(Resource r, int amt);
 
 }
