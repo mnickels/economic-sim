@@ -20,6 +20,11 @@ public interface Player {
 	 */
 	public void acquireLand(Area a);
 	
+	/**
+	 * Determines if the Player can afford a specified cost of resources.
+	 * @param cost the number of resources to check for.
+	 * @return True if the Player can afford the specified costs, false if they are unable to pay for all of the costs.
+	 */
 	public boolean canAfford(int[] cost);
 
 }
