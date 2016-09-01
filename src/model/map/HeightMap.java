@@ -12,30 +12,27 @@ import javafx.scene.paint.Color;
  * @author Mike Nickels | mnickels@uw.edu
  *
  */
-public class HeightMap implements Map {
+public class HeightMap extends AbstractMap {
 	
 	
 	private final float[][] noise;
 	
-	private final int width;
-	
-	private final int height;
+
 	/**
 	 * 
 	 * @param simplexNoise
 	 */
 	public HeightMap(float[][] simplexNoise) {
 		
-		width = simplexNoise.length;
-		height = simplexNoise[0].length;
+		super(simplexNoise[0].length, simplexNoise.length);
 		
 		//Making a deep copy of the simplexNoise.
-		noise = new float[height][width];
+		noise = new float[getHeight()][getWidth()];
 		
 		//Copying the y values.
-		for(int y = 0; y < height; y++){
+		for(int y = 0; y < getHeight(); y++){
 			//Copying the x values. 
-			for(int x = 0; x < width; x++){
+			for(int x = 0; x < getWidth(); x++){
 				noise[y][x] = simplexNoise[y][x];
 			}
 		}
@@ -43,13 +40,13 @@ public class HeightMap implements Map {
 
 	@Override
 	public Image drawMap() {
-		WritableImage imageMap = new WritableImage(width, height);
+		WritableImage imageMap = new WritableImage(getWidth(), getHeight());
 		
 		//Draws the pixel in the image.
 		PixelWriter px = imageMap.getPixelWriter();
 		
-		for(int y = 0; y < height; y++){
-			for(int x = 0; x < width; x++){
+		for(int y = 0; y < getHeight(); y++){
+			for(int x = 0; x < getWidth(); x++){
 				px.setColor(x, y, getColor(noise[y][x]));
 			}
 		}
@@ -73,7 +70,7 @@ public class HeightMap implements Map {
 		return Color.WHITE;
 	}
 	
-	public float getHeight(int x, int y){
+	public float getNoise(int x, int y){
 		return noise[y][x];
 	}
 }
