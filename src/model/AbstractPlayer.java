@@ -50,7 +50,7 @@ public abstract class AbstractPlayer implements Player {
 	}
 	
 	@Override
-	public boolean spendMaterial(Resource r, int amt) {
+	public boolean spendResource(Resource r, int amt) {
 		if (resourceCount(r) < amt) return false;
 		resources[r.ordinal()] -= amt;
 		return true;

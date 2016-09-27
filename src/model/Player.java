@@ -48,6 +48,6 @@ public interface Player {
 	 * @param amt the number of the Resource that is being used up.
 	 * @return False if there are not enough of that type of resources to spend; true otherwise.
 	 */
-	public boolean spendMaterial(Resource r, int amt);
+	public boolean spendResource(Resource r, int amt);
 
 }
