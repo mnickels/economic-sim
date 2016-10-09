@@ -47,3 +47,8 @@
 	-fx-fill: #EEEEEE;
 	-fx-font-size: 18px;
 }
+
+#credits-text {
+	-fx-font-size: 16px;
+	-fx-fill: white;
+}
