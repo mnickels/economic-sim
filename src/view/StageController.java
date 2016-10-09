@@ -10,6 +10,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import util.PropertiesManager;
 import util.XMLProperties;
 
@@ -30,21 +31,33 @@ public final class StageController extends Application {
 	private static String GAME_TITLE;
 	/** Instance of the current Game object being used in the application. */
 	private static StageController GAME;
+	/** The resolution or stage dimensions to be used. */
+	private static int[] RESOLUTION;
+	/** The boolean if the stage should be full-screen or not. */
+	private static boolean FULLSCREEN;
 	
 	/** The primary Stage for the application UI. */
 	private Stage primaryStage;
 	
 	static {
-		final XMLProperties prop = PropertiesManager.getXML("./config/application.xml");
+		XMLProperties prop;
+		
+		prop = PropertiesManager.getXML("./config/application.xml");
 		FXML_PATH = prop.getString("fxml-path");
 		FXML_EXT = prop.getString("fxml-ext");
 		GAME_TITLE = prop.getString("game-title");
+		
+		prop = PropertiesManager.getXML("./config/display.xml");
+		RESOLUTION = prop.getIntArray("resolution");
+		FULLSCREEN = prop.getBoolean("fullscreen");
 	}
 
 	@Override
 	public void start(Stage primaryStage) {
 		GAME = this;
 		this.primaryStage = primaryStage;
+		primaryStage.setHeight(RESOLUTION[1]);
+		primaryStage.setWidth(RESOLUTION[0]);
 		primaryStage.setTitle(GAME_TITLE);
 		setScene("MainMenu");
 	}
@@ -54,19 +67,18 @@ public final class StageController extends Application {
 	 * @param sceneName the name of the .fxml file to load as the current screen (exclude the .fxml file extension)
 	 */
 	public static void setScene(String sceneName) {
-		Scene scene = null;
+		final FXMLLoader loader = new FXMLLoader();
 		try {
-			scene = new Scene(new FXMLLoader().load(new FileInputStream(FXML_PATH + sceneName + FXML_EXT)));
+			final Scene scene = new Scene(loader.load(new FileInputStream(FXML_PATH + sceneName + FXML_EXT)));
 			scene.getStylesheets().add((new File(FXML_PATH + "application.css")).toURI().toURL().toExternalForm());
+			GAME.primaryStage.setScene(scene);
+			GAME.primaryStage.setFullScreen(FULLSCREEN); // Change to exact resolution later to get rid of message... Setting resolution as setWidth() and setHeight() caused scaling problems with Windows's integrated scaling options (100% - 250%).
+			GAME.primaryStage.hide(); // Necessary to allow proper resize of the stage... :(
+			GAME.primaryStage.show();
 		} catch (IOException e) {
 			System.err.println("Error loading scene: " + sceneName);
 			e.printStackTrace();
 		}
-		if (scene != null) {
-			GAME.primaryStage.setScene(scene);
-			GAME.primaryStage.centerOnScreen();
-		}
-		GAME.primaryStage.show();
 		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         GAME.primaryStage.setX((primScreenBounds.getWidth() - GAME.primaryStage.getWidth()) / 2);
         GAME.primaryStage.setY((primScreenBounds.getHeight() - GAME.primaryStage.getHeight()) / 2);

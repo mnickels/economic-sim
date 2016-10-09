@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane styleClass="main-menu" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.scenes.Credits">
+   <children>
+      <Text id="logo" strokeType="OUTSIDE" strokeWidth="0.0" text="theUWhackers™" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+      <Text onMouseClicked="#handleBack" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Back" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <GridPane hgap="15.0" layoutX="63.0" layoutY="-109.0" vgap="10.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+            <Text id="credits-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Design" GridPane.rowIndex="1" />
+            <Text id="credits-text" strokeType="OUTSIDE" strokeWidth="0.0" text="UI / Art" GridPane.rowIndex="2" />
+            <Text id="credits-text" strokeType="OUTSIDE" strokeWidth="0.0" text="World Generation" GridPane.rowIndex="3" />
+            <Text id="credits-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Michael Courtland" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text id="credits-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Joshua Neighbarger" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text id="credits-text" strokeType="OUTSIDE" strokeWidth="0.0" text="Youcef Bennour" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
 </AnchorPane>
-
