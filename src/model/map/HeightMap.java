@@ -23,7 +23,7 @@ public class HeightMap extends AbstractMap {
 	 * @param simplexNoise
 	 */
 	public HeightMap(float[][] simplexNoise) {
-		
+
 		super(simplexNoise[0].length, simplexNoise.length);
 		
 		//Making a deep copy of the simplexNoise.
