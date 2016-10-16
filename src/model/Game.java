@@ -1,5 +1,9 @@
 package model;
 
+import model.players.ComputerPlayer;
+import model.players.HumanPlayer;
+import model.players.Player;
+
 /**
  * Contains all necessary game model data of a single game.
  *
