@@ -15,11 +15,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -28,8 +25,7 @@ import javafx.util.Duration;
 
 import model.Game;
 import model.players.Player;
-import model.map.Map;
-import model.map.SimplexNoise;
+import model.map.MapType;
 import model.resources.Resource;
 import util.PropertiesManager;
 
@@ -106,18 +102,6 @@ public class PlayerScene {
         	mapView.translateXProperty().set(event.getScreenX() + mouseX);
         	mapView.translateYProperty().set(event.getScreenY() + mouseY);
         });
-	}
-	
-	/**
-	 * Determines the color to assign to a value of noise.
-	 * @param f the noise value to interpret.
-	 * @return A Color representing this value's height.
-	 */
-	private Color pickColor(float f) {
-		if (f < -1) return Color.RED;
-		if (f < 0.1) return Color.DARKBLUE;
-		if (f <= 1) return Color.GREY;
-		return Color.RED;
 	}
 	
 	@FXML
