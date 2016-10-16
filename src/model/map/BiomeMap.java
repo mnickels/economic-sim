@@ -10,6 +10,10 @@ public class BiomeMap extends AbstractMap {
 	private float[][] height;
 	private final Random rand;
 	
+	public BiomeMap(float[][] heights) {
+		this(heights, System.nanoTime());
+	}
+	
 	public BiomeMap(float[][] heights, long seed) {
 		super(heights[0].length, heights.length);
 		height = heights;
