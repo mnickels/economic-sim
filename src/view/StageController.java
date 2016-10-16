@@ -8,9 +8,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import util.PropertiesManager;
 import util.XMLProperties;
 
@@ -59,6 +59,7 @@ public final class StageController extends Application {
 		primaryStage.setHeight(RESOLUTION[1]);
 		primaryStage.setWidth(RESOLUTION[0]);
 		primaryStage.setTitle(GAME_TITLE);
+		primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		setScene("MainMenu");
 	}
 	
@@ -82,6 +83,7 @@ public final class StageController extends Application {
 		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
         GAME.primaryStage.setX((primScreenBounds.getWidth() - GAME.primaryStage.getWidth()) / 2);
         GAME.primaryStage.setY((primScreenBounds.getHeight() - GAME.primaryStage.getHeight()) / 2);
+        GAME.primaryStage.setResizable(false);
 	}
 
 }
