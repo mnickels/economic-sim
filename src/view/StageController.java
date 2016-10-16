@@ -81,8 +81,6 @@ public final class StageController extends Application {
 			GAME.primaryStage.setScene(scene);
 			GAME.primaryStage.setFullScreen(FULLSCREEN); // Change to exact resolution later to get rid of message... Setting resolution as setWidth() and setHeight() caused scaling problems with Windows's integrated scaling options (100% - 250%).
 			GAME.primaryStage.setMaximized(FULLSCREEN);
-//			GAME.primaryStage.hide(); // Necessary to allow proper resize of the stage... :(
-			GAME.primaryStage.show();
 		} catch (IOException e) {
 			System.err.println("Error loading scene: " + sceneName);
 			e.printStackTrace();
@@ -91,6 +89,8 @@ public final class StageController extends Application {
         GAME.primaryStage.setX((primScreenBounds.getWidth() - GAME.primaryStage.getWidth()) / 2);
         GAME.primaryStage.setY((primScreenBounds.getHeight() - GAME.primaryStage.getHeight()) / 2);
         GAME.primaryStage.setResizable(false);
+		GAME.primaryStage.hide(); // Necessary to allow proper resize of the stage... :(
+		GAME.primaryStage.show();
 	}
 
 }
