@@ -5,4 +5,5 @@
 <entry key="fxml-path">./res/fxml/</entry>
 <entry key="fxml-ext">.fxml</entry>
 <entry key="game-title">Economic Simulator</entry>
+<entry key="defailt-map-type"></entry>
 </properties>
