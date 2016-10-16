@@ -27,7 +27,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import model.Game;
-import model.Player;
+import model.players.Player;
 import model.map.Map;
 import model.map.SimplexNoise;
 import model.resources.Resource;
