@@ -59,13 +59,13 @@ public class HeightMap extends AbstractMap {
 			return Color.BLUE;
 		if (height <= seaLevel)
 			return Color.CYAN;
-		if(height <= -0.1)
+		if(height <= 0.1)
 			return Color.YELLOW;
-		if (height <= -0.3)
+		if (height <= 0.3)
 			return Color.LIGHTGREEN;
-		if (height <= -0.5)
+		if (height <= 0.5)
 			return Color.DARKGREEN;
-		if (height <= -0.8)
+		if (height <= 0.8)
 			return Color.GRAY;
 		return Color.WHITE;
 	}
