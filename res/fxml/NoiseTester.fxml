@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane minHeight="500.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.map.SimplexNoiseTester">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#generateMap" text="Generate!" textOverrun="CLIP" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                     <children>
+                        <TextField fx:id="seed" promptText="Seed" />
+                        <CheckBox fx:id="randomize" mnemonicParsing="false" selected="true" text="Randomize" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <Label fx:id="octavesLabel" text="Octaves: " />
+                  <Slider fx:id="octaves" majorTickUnit="3.0" max="25.0" min="1.0" minorTickCount="2" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="7.0" />
+                  <Label fx:id="roughnessLabel" text="Roughness: " />
+                  <Slider fx:id="roughness" majorTickUnit="0.25" max="1.0" showTickLabels="true" showTickMarks="true" value="0.4" />
+                  <Label fx:id="frequencyLabel" text="Frequency: " />
+                  <Slider fx:id="frequency" majorTickUnit="0.02" max="0.1" minorTickCount="1" showTickLabels="true" showTickMarks="true" value="0.01" />
+               </children>
+            </VBox>
+         </bottom>
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+         <right>
+            <HBox spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Label text="Width" />
+                        <Slider fx:id="widthSlider" blockIncrement="50.0" majorTickUnit="300.0" max="1600.0" min="100.0" minorTickCount="2" orientation="VERTICAL" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="200.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Slider>
+                        <Label fx:id="widthLabel" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Label text="Height" />
+                        <Slider fx:id="heightSlider" blockIncrement="50.0" majorTickUnit="100.0" max="800.0" min="100.0" minorTickCount="1" orientation="VERTICAL" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="150.0" VBox.vgrow="ALWAYS" />
+                        <Label fx:id="heightLabel" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Label text="Scale" />
+                        <Slider fx:id="scaleSlider" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" orientation="VERTICAL" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="3.0" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </right>
+         <left>
+            <ImageView fx:id="map" pickOnBounds="true" preserveRatio="true" smooth="false" BorderPane.alignment="CENTER" />
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

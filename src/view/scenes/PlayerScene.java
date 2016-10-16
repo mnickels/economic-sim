@@ -4,20 +4,27 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import model.map.SimplexNoise;
 import util.PropertiesManager;
 
@@ -39,6 +46,8 @@ public class PlayerScene {
 	@FXML private Text woodLabel;
 	@FXML private Text oresLabel;
 	@FXML private Text oilLabel;
+	private double mouseX;
+	private double mouseY;
 	
 	static {
 		FXML_PATH = PropertiesManager.getXML("./config/application.xml").getString("fxml-path");
@@ -67,6 +76,7 @@ public class PlayerScene {
 	 * @author Mike
 	 */
 	private void loadMap() {
+		final AnimatedZoomOperator zoomOperator = new AnimatedZoomOperator();
 		final float[][] noise = new SimplexNoise().generateOctavedSimplexNoise(4000, 3000, 2, .4f, .001f);
 		final WritableImage img = new WritableImage(noise[0].length * 1, noise.length * 1);
 		final PixelWriter px = img.getPixelWriter();
@@ -79,7 +89,31 @@ public class PlayerScene {
 				}
 			}
 		}
+		
 		mapView.setImage(img);
+		
+//		mapView.setFitWidth(mapView.getScene().getWidth());
+		
+		mapView.setOnScroll(new EventHandler<ScrollEvent>() {
+			@Override
+			public void handle(ScrollEvent event) {
+				double zoomFactor = 1.5;
+				if (event.getDeltaY() <= 0) {
+					zoomFactor = 1 / zoomFactor;
+				}
+				zoomOperator.zoom(mapView, zoomFactor, event.getSceneX(), event.getSceneY());
+			}
+		});
+
+		mapView.setOnMousePressed(event -> {
+			mouseX = mapView.getX() - event.getScreenX();
+		    mouseY = mapView.getY() - event.getScreenY();
+        });
+		
+        mapView.setOnMouseDragged(event -> {
+        	mapView.translateXProperty().set(event.getScreenX() + mouseX);
+        	mapView.translateYProperty().set(event.getScreenY() + mouseY);
+        });
 	}
 	
 	/**
@@ -122,6 +156,42 @@ public class PlayerScene {
 		default:
 			break;
 		}
+	}
+	
+	/**
+	 * 
+	 * @author NOT JOSHUA - RIPPED FROM WEB
+	 *
+	 */
+	public class AnimatedZoomOperator {
+
+	    private Timeline timeline;
+
+	    public AnimatedZoomOperator() {         
+	         this.timeline = new Timeline(60);
+	    }
+
+	    public void zoom(Node node, double factor, double x, double y) {    
+	        // determine scale
+	        double oldScale = node.getScaleX();
+	        double scale = oldScale * factor;
+	        double f = (scale / oldScale) - 1;
+
+	        // determine offset that we will have to move the node
+	        Bounds bounds = node.localToScene(node.getBoundsInLocal());
+	        double dx = (x - (bounds.getWidth() / 2 + bounds.getMinX()));
+	        double dy = (y - (bounds.getHeight() / 2 + bounds.getMinY()));
+
+	        // timeline that scales and moves the node
+	        timeline.getKeyFrames().clear();
+	        timeline.getKeyFrames().addAll(
+	            new KeyFrame(Duration.millis(200), new KeyValue(node.translateXProperty(), node.getTranslateX() - f * dx)),
+	            new KeyFrame(Duration.millis(200), new KeyValue(node.translateYProperty(), node.getTranslateY() - f * dy)),
+	            new KeyFrame(Duration.millis(200), new KeyValue(node.scaleXProperty(), scale)),
+	            new KeyFrame(Duration.millis(200), new KeyValue(node.scaleYProperty(), scale))
+	        );
+	        timeline.play();
+	    }
 	}
 	
 }

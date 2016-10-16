@@ -3,5 +3,5 @@
 <properties>
 <comment>./config/display.xml</comment>
 <entry key="resolution">1920, 1080</entry>
-<entry key="fullscreen">false</entry>
+<entry key="fullscreen">true</entry>
 </properties>
