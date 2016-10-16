@@ -1,3 +1,9 @@
+/*
+ * Economic Simulator
+ * theUWhackers 2016
+ * developed by: mnickels, jneigh, and ybennour
+ */
+
 package view;
 
 import java.io.File;
@@ -74,7 +80,8 @@ public final class StageController extends Application {
 			scene.getStylesheets().add((new File(FXML_PATH + "application.css")).toURI().toURL().toExternalForm());
 			GAME.primaryStage.setScene(scene);
 			GAME.primaryStage.setFullScreen(FULLSCREEN); // Change to exact resolution later to get rid of message... Setting resolution as setWidth() and setHeight() caused scaling problems with Windows's integrated scaling options (100% - 250%).
-			GAME.primaryStage.hide(); // Necessary to allow proper resize of the stage... :(
+			GAME.primaryStage.setMaximized(FULLSCREEN);
+//			GAME.primaryStage.hide(); // Necessary to allow proper resize of the stage... :(
 			GAME.primaryStage.show();
 		} catch (IOException e) {
 			System.err.println("Error loading scene: " + sceneName);
