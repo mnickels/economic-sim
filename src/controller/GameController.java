@@ -11,7 +11,7 @@ import model.Game;
 public class GameController implements Runnable {
 	
 	private boolean running;
-	private int targetUDS = 10;
+	private int targetUPS = 1;
 
 	/**
 	 * Create a new GameController.
@@ -32,7 +32,7 @@ public class GameController implements Runnable {
 		running = true;
 		
 		long lastTime = System.nanoTime();
-		double nsPerFrame = 1000000000 / (double) targetUDS;
+		double nsPerFrame = 1000000000 / (double) targetUPS;
 		
 		int turns = 0;
 		int frames = 0;
@@ -63,6 +63,10 @@ public class GameController implements Runnable {
 				turns = 0;
 			}
 		}
+	}
+	
+	public static void main(String[] args) {
+		new Thread(new GameController(), "Test-Thread").start();
 	}
 
 }

@@ -34,6 +34,32 @@ public final class Launcher extends Application {
 	}
 	
 	/**
+	 * Main method, starting point of the program.
+	 * @param args command line arguments
+	 */
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	@Override
+	public void start(Stage primaryStage) {
+		final FXMLLoader loader = new FXMLLoader();
+		try {
+			final Scene scene = new Scene(loader.load(new FileInputStream(FXML_PATH + "Launcher.fxml")));
+			scene.getStylesheets().add((new File(FXML_PATH + "application.css")).toURI().toURL().toExternalForm());
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) {
+			System.err.println("Error loading scene: Launcher.fxml");
+			e.printStackTrace();
+		}
+		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+        primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+	}
+	
+	/**
 	 * Launches the Game UI.
 	 */
 	@FXML
@@ -66,28 +92,4 @@ public final class Launcher extends Application {
 		System.exit(0);
 	}
 	
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			final Scene scene = new Scene(new FXMLLoader().load(new FileInputStream(FXML_PATH + "Launcher.fxml")));
-			scene.getStylesheets().add((new File(FXML_PATH + "application.css")).toURI().toURL().toExternalForm());
-			primaryStage.setScene(scene);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		primaryStage.initStyle(StageStyle.UNDECORATED);
-		primaryStage.show();
-		Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-        primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
-        primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
-	}
-	
-	/**
-	 * Main method, starting point of the program.
-	 * @param args command line arguments
-	 */
-	public static void main(String[] args) {
-		launch(args);
-	}
-
 }

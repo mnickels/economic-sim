@@ -1,9 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import model.map.areas.Area;
 import model.resources.Resource;
@@ -16,7 +14,7 @@ import model.resources.Resource;
 public abstract class AbstractPlayer implements Player {
 	
 	private final String name;
-	private final Map<Resource, Integer> resources;
+	private final int[] resources;
 	private final List<Area> ownedLand;
 
 	/**
@@ -25,11 +23,7 @@ public abstract class AbstractPlayer implements Player {
 	 */
 	public AbstractPlayer(String name) {
 		this.name = name;
-		resources = new HashMap<>();
-		// set up all material types to begin with 0 units
-		for (Resource m : Resource.values()) {
-			resources.put(m, 0);
-		}
+		resources = new int[Resource.values().length];
 		ownedLand = new ArrayList<>();
 	}
 	
@@ -38,41 +32,35 @@ public abstract class AbstractPlayer implements Player {
 		ownedLand.add(a);
 	}
 	
-	/**
-	 * Get the amount of a resource that there is.
-	 * @param m the Material to check the quantity of.
-	 * @return The number of the specified Material that this Player has.
-	 */
-	public int materialCount(Resource m) {
-		return resources.get(m);
+	@Override
+	public boolean canAfford(int[] cost) {
+		for (int i = 0; i < cost.length; i++)
+			if (resources[i] < cost[i]) return false;
+		return true;
 	}
 	
-	/**
-	 * Gather a certain amount of a Material.
-	 * @param m the Material to collect.
-	 * @param amt the amount of the Material being collected.
-	 */
-	public void collectMaterial(Resource m, int amt) {
-		resources.put(m, materialCount(m) + amt);
+	@Override
+	public int resourceCount(Resource r) {
+		return resources[r.ordinal()];
 	}
 	
-	/**
-	 * Consume an amount of a Material that the Player owns, if enough are available.
-	 * @param m the Material to spend.
-	 * @param amt the number of the Material that is being used up.
-	 * @return False if there are not enough of that type of resources to spend; true otherwise.
-	 */
-	public boolean spendMaterial(Resource m, int amt) {
-		if (materialCount(m) < amt) return false;
-		resources.put(m, materialCount(m) - amt);
+	@Override
+	public void collectResource(Resource r, int amt) {
+		resources[r.ordinal()] += amt;
+	}
+	
+	@Override
+	public boolean spendResource(Resource r, int amt) {
+		if (resourceCount(r) < amt) return false;
+		resources[r.ordinal()] -= amt;
 		return true;
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder s = new StringBuilder(String.format("%s '%s'", getClass().getSimpleName(), name));
-		for (Resource m : Resource.values()) {
-			s.append(String.format("\n\t%s: %d", m, materialCount(m)));
+		for (Resource r : Resource.values()) {
+			s.append(String.format("\n\t%s: %d", r, resourceCount(r)));
 		}
 		return s.toString();
 	}

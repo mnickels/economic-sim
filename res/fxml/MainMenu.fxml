@@ -7,28 +7,29 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.scenes.MainMenu">
    <children>
-      <GridPane fx:id="root" layoutY="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="main-menu" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" styleClass="main-menu" stylesheets="@application.css" vgap="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <Text onMouseClicked="#handleNewGame" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="New Game" GridPane.rowIndex="1" />
-            <Text onMouseClicked="#handleLoadMenu" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Load Game" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Settings" GridPane.rowIndex="3" />
-            <Text onMouseClicked="#handleExit" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Exit" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Credits" GridPane.rowIndex="4" />
+            <Text onMouseClicked="#handleNewGame" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="New Game" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Text onMouseClicked="#handleLoadMenu" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Load Game" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Text onMouseClicked="#handleOptionsMenu" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Settings" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Text onMouseClicked="#handleExit" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Exit" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Text onMouseClicked="#handleCredits" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-menu-text" text="Credits" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

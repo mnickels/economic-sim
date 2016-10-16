@@ -5,25 +5,28 @@
 }
 
 .main-menu {
-	-fx-background-color: #666666;
+	-fx-background-image: url("../images/MainBackground.jpg");
+	-fx-background-size: cover;
+	-fx-background-repeat: stretch;   
+	-fx-background-position: center center;
 }
 
 .main-menu-text {
 	-fx-fill: #EEEEEE;
-	-fx-font-size: 20px;
+	-fx-font-size: 24px;
 	-fx-font-weight: bold;
 	-fx-effect: dropshadow(gaussian, #000000, 2, .5, 0, 0);
 }
 
 .main-menu-text:hover {
 	-fx-cursor: hand;
-	-fx-effect: dropshadow(gaussian, #000000, 15, .5, 0, 0);
+	-fx-effect: dropshadow(gaussian, #AAAAAA, 15, .5, 0, 0);
 }
 
 .launcher {
-	-fx-background-position: center;
 	-fx-background-image: url("../images/LauncherBackground.jpg");
 	-fx-background-repeat: stretch;
+	-fx-background-position: center center;
 }
 
 .launcher-text {
@@ -46,4 +49,9 @@
 #logo {
 	-fx-fill: #EEEEEE;
 	-fx-font-size: 18px;
+}
+
+#credits-text {
+	-fx-font-size: 16px;
+	-fx-fill: white;
 }
