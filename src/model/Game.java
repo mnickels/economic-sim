@@ -20,7 +20,7 @@ public class Game {
 	private static final int HEIGHT = 3000;
 	private static final int OCTAVES = 7;
 	private static final float ROUGHNESS = 0.4f;
-	private static final float FREQUENCY = 0.01f;
+	private static final float FREQUENCY = 0.001f;
 	
 	private static final Game instance = new Game();
 	
