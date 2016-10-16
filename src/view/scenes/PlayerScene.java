@@ -25,7 +25,12 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+
+import model.Game;
+import model.Player;
+import model.map.Map;
 import model.map.SimplexNoise;
+import model.resources.Resource;
 import util.PropertiesManager;
 
 /**
@@ -64,33 +69,20 @@ public class PlayerScene {
 	 */
 	private void loadResources() {
 		System.out.println("PlayerScene: How to get player's resources? And how to get Player from Game?");
-//		moneyLabel.textProperty().bind(player.moneyProperty());
-//		foodLabel.textProperty().bind(player.foodProperty());
-//		woodLabel.textProperty().bind(player.woodProperty());
-//		oresLabel.textProperty().bind(player.oresProperty());
-//		oilLabel.textProperty().bind(player.oilProperty());
+		Player player = Game.getInstance().getLocalPlayer();
+		moneyLabel.setText(String.valueOf(player.resourceCount(Resource.MONEY)));
+		foodLabel.setText(String.valueOf(player.resourceCount(Resource.FOOD)));
+		woodLabel.setText(String.valueOf(player.resourceCount(Resource.WOOD)));
+		oresLabel.setText(String.valueOf(player.resourceCount(Resource.ORES)));
+		oilLabel.setText(String.valueOf(player.resourceCount(Resource.OIL)));
 	}
 	
 	/**
 	 * Loads the generated map into the scene.
-	 * @author Mike
 	 */
 	private void loadMap() {
 		final AnimatedZoomOperator zoomOperator = new AnimatedZoomOperator();
-		final float[][] noise = new SimplexNoise().generateOctavedSimplexNoise(4000, 3000, 2, .4f, .001f);
-		final WritableImage img = new WritableImage(noise[0].length * 1, noise.length * 1);
-		final PixelWriter px = img.getPixelWriter();
-		for (int y = 0; y < noise.length; y++) {
-			for (int x = 0; x < noise[y].length; x++) {
-				for (int j = 0; j < 1; j++) {
-					for (int i = 0; i < 1; i++) {
-						px.setColor(x * 1 + i, y * 1 + j, pickColor(noise[y][x]));
-					}
-				}
-			}
-		}
-		
-		mapView.setImage(img);
+		mapView.setImage(Game.getInstance().getMap(MapType.HEIGHT_MAP).drawMap());
 		
 //		mapView.setFitWidth(mapView.getScene().getWidth());
 		
@@ -149,6 +141,7 @@ public class PlayerScene {
 	
 	@FXML
 	private void handleKeyPressed(final KeyEvent event) {
+		System.out.println(event.getCode().getName());
 		switch (event.getCode()) {
 		case ESCAPE:
 			handlePauseMenu();

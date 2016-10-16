@@ -9,5 +9,7 @@ import javafx.scene.image.Image;
  * @author Mike Nickels | mnickels@uw.edu
  */
 public interface Map {
+	
 	public Image drawMap();
+	
 }
