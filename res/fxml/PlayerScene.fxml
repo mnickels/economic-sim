@@ -11,10 +11,10 @@
    <children>
       <ImageView fx:id="mapView" fitHeight="800.0" fitWidth="1200.0" onKeyPressed="#handleKeyPressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="14.0" layoutY="281.0" onKeyPressed="#handleKeyPressed" pickOnBounds="true" preserveRatio="true" styleClass="minimap" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-      <GridPane layoutX="486.0" layoutY="14.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <GridPane layoutX="486.0" layoutY="14.0" prefWidth="200.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
         <columnConstraints>
-            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="154.0" minWidth="10.0" prefWidth="154.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="95.0" minWidth="10.0" prefWidth="46.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
@@ -24,16 +24,16 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text fx:id="moneyLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Money" GridPane.columnIndex="1" />
-            <Text fx:id="foodLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Food" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Text fx:id="woodLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Wood" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Text fx:id="oresLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Ores" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Text fx:id="oilLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Oil" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Foor" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wood" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ores" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Oil" GridPane.rowIndex="4" />
+            <Text fx:id="moneyLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Money" />
+            <Text fx:id="foodLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Food" GridPane.rowIndex="1" />
+            <Text fx:id="woodLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Wood" GridPane.rowIndex="2" />
+            <Text fx:id="oresLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Ores" GridPane.rowIndex="3" />
+            <Text fx:id="oilLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Oil" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Money" GridPane.columnIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Food" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wood" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ores" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Oil" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Text layoutX="25.0" layoutY="35.0" onMouseClicked="#handlePauseMenu" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
