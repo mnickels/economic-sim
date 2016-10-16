@@ -1,5 +1,6 @@
 package model.players;
 
+import javafx.beans.property.IntegerProperty;
 import model.map.areas.Area;
 import model.resources.Resource;
 
